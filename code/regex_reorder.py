@@ -32,12 +32,26 @@ def lesa_skra(file_path):
 
 
 def endurraða_skra(linur):
-    """"
-    Hér á eftir að uppfæra doc-streng sem lýsir fallinu betur.
-    """
+    endurröðuðar_linur = []
+    for lina in linur:
+        # Skipta línunum í parta
+        parts = lina.strip().split(', ')
 
-    raise NotImplementedError("Regluleg segð til að endurraða línur hefur ekki verið útfærð.")
+        # Draga út nafnahlutanna
+        name_parts = parts[0].split()
 
+        # Endurraða pörtunum
+        address = ' '.join(parts[1:-1])  # heimilisfang
+        phone_number = parts[-1]  # símanúmer
+        last_name = name_parts[-1]  # kenninafn
+        first_middle_names = ' '.join(name_parts[:-1])  # eigninnafn millinafn
+
+        # Sameina partana aftur nema með réttu merki á milli sem á aðeins við í nafni
+        endurröðuð_lina = '\t'.join([address, phone_number, last_name + ', ' + first_middle_names])
+
+        endurröðuðar_linur.append(endurröðuð_lina)
+
+    return endurröðuðar_linur
 
 def skrifa_nidurstodur(output_file, linur):
     """
