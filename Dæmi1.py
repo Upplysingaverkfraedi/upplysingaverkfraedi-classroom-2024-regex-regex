@@ -54,19 +54,34 @@ def finna_kennitolur(text, leit_af_einstaklingum, leit_af_fyrirtaekjum):
 
     kennitolur = []
 
-    mynstur_einstaklingar = r'\b(0[1-9]|[12][0-9]|3[01])(0[1-9]|1[0-2])\d{2}-([2-9][0-9])\d{1}[890]\b'
-
+    # Uppfærð regluleg segð fyrir einstaklinga með mörgum hópum
+    mynstur_einstaklingar = r'\b(0[1-9]|[12][0-9]|3[01])(0[1-9]|1[0-2])(\d{2})-([2-9][0-9])(\d{1})([890])\b'
+    
+    # Regluleg segð fyrir fyrirtæki (engin breyting)
     mynstur_fyrirtaeki = r'\b[4-9]\d{5}-\d{4}\b'
 
     if leit_af_einstaklingum:
         for lina in text:
-            kennitolur.extend(re.findall(mynstur_einstaklingar, lina))
+            # Finn allar kennitölur einstaklinga í línunni
+            for kt in re.findall(mynstur_einstaklingar, lina):
+                dagur = kt[0]      # Fyrstu tveir stafirnir fyrir dagsetningu
+                manudur = kt[1]    # Tveir stafir fyrir mánuð
+                ar = kt[2]         # Tveir stafir fyrir ártal
+                fyrsti_hluti = kt[3]  # Fyrstu tveir stafirnir á seinni hluta
+                mid_hluti = kt[4]  # einn stafur
+                lokastafur = kt[5]  # Lokastafurinn (8, 9 eða 0)
+                
+                # Sameina hópana til að fá kennitölu á forminu ddmmáá-xxxx
+                kennitala = f"{dagur}{manudur}{ar}-{fyrsti_hluti}{mid_hluti}{lokastafur}"
+                kennitolur.append(kennitala)
 
     if leit_af_fyrirtaekjum:
         for lina in text:
+            # Finn allar kennitölur fyrirtækja í línunni og bæti þeim við listann
             kennitolur.extend(re.findall(mynstur_fyrirtaeki, lina))
 
     return kennitolur
+
 
 def main():
     """
