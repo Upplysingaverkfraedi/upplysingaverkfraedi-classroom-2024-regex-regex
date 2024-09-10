@@ -33,7 +33,12 @@ def finna_netfong(text):
     :return:     (list) Listi af netföngum
     """
 
-    raise NotImplementedError("Regluleg segð til að finna netföng hefur ekki verið útfærð.")
+    email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,6}$'
+
+    matches = []
+    for line in text:
+        matches.extend(re.findall(email_pattern, line))
+    return matches
 
 
 def prenta_nidurstodur(netfong_listi):
