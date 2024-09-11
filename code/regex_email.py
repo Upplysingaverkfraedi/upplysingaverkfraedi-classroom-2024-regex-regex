@@ -32,8 +32,8 @@ def finna_netfong(text):
     :param text: (list) Listi af línum
     :return:     (list) Listi af netföngum
     """
-
-    email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\.[a-zA-Z]{2,6}$'
+    # Regluleg segð til að finna lögleg email
+    email_pattern = r'[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*(?:\.[a-zA-Z]{2,6})+$'
 
     matches = []
     for line in text:
