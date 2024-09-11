@@ -1,5 +1,5 @@
 import argparse
-
+import re
 
 def parse_arguments():
     """
@@ -23,9 +23,10 @@ def lesa_skra(file_path):
     :param file_path: (str) Slóð að skrá
     :return:          (list) Listi af línum
     """
+    encodings = ['utf-8', 'latin-1', 'cp1252']
 
-    with open(file_path, 'r') as file:
-        return file.readlines()
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return file.read()
 
 
 def prenta_nidurstodur(kennitolur):
@@ -52,17 +53,24 @@ def finna_kennitolur(text, leit_af_einstaklingum, leit_af_fyrirtaekjum):
     :return:                        (list) Listi af kennitölum
     """
 
-    kennitolur = []
 
-    if leit_af_einstaklingum:
+    if leit_af_einstaklingum and leit_af_fyrirtaekjum:
+        #Regluleg segð sem leitar að kennitölum einstaklinga eða fyrirtækja. Sameinaði stöku reglulegu segðirnar með |
+        finna_kennitolur = r'\b[0123]\d{1}[012]\d{3}-[2-9]\d{2}[8-9|0]\b|\b[4567]\d{5}-\d{4}\b'
+        kennitolur = re.findall(finna_kennitolur, text)
+        return kennitolur
+
+    elif leit_af_einstaklingum:
         # Regluleg segð fyrir kennitölur einstaklinga
-        raise NotImplementedError("Fall sem leitar að kt einstaklinga hefur enn ekki verið útfært.")
+        finna_kennitolur = r'\b[0123]\d{1}[012]\d{3}-[2-9]\d{2}[8-9|0]\b'
+        kennitolur = re.findall(finna_kennitolur, text)
+        return kennitolur
 
-    if leit_af_fyrirtaekjum:
+    elif leit_af_fyrirtaekjum:
         # Regluleg segð fyrir kennitölur fyrirtækja
-        raise NotImplementedError("Fall sem leitar að kt fyrirtækja hefur enn ekki verið útfært.")
-
-    return kennitolur
+        finna_ft = r'\b[4567]\d{5}-\d{4}\b'
+        kennitolur = re.findall(finna_ft, text)
+        return kennitolur
 
 
 def main():

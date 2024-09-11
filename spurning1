@@ -1,0 +1,42 @@
+1. Leita að kennitölu:
+
+Skrifið tvær reglulegar segðir til að finna kennitölur einstaklinga og fyrirtækja í texta.
+Skrifið Python kóða sem leitar að kennitölum samkvæmt reglulegu segðunum og prentar niðurstöðurnar.
+Keyrið kóðann með valmöguleikum til að leita annað hvort af einstaklinga, fyrirtækja eða báðum í einu.
+
+Svar: 
+
+Til að finna kennitölur einstaklinga. 
+
+Kennitölur einstaklinga eru byggðar svona upp: 
+Fæðingardagur: Sex fyrstu tölustafir kennitölunnar sýna dag, mánuð og ár (DDMMYY).
+Raðtala: Tveir næstu tölustafir (stafir 7 og 8) eru raðtala sem er úthlutað í röð frá og með 20.
+Vartala: Næsti tölustafur (stafur 9) er vartala sem reiknast út með Modulus 11 aðferð og getur verið frá 0 til 9.
+Aldur: Aftasti tölustafurinn (stafur 10) gefur til kynna öldina sem viðkomandi er fæddur á, og getur verið 8, 9 eða 0 (t.d. 0 fyrir 2000-2099, 9 fyrir 1900-1999).
+
+Reglulega segðin:
+\b[0123]\d{1}[012]\d{3}-[2-9]\d{2}[8-9|0]\b
+
+\b orðaskil
+[0123] fyrsti stafurinn er 0, 1, 2 eða 3
+\d{1} næsti tölustafur er frá 0-9
+[012] næsti tölustafur er 0, 1 eða 2 því allir mánuðir byrja á því
+\d{3} einhver tala frá 0-9 því þetta er seinni mánaðartalan sem getur verið 0-9. og so eru 2 tölur fyrir árið sem er líka frá 0-9
+- svo er bandstrik
+[2-9] fyrri talan í raðtölunni (sem byrjar frá og með 20)
+\d{2} þetta eru 2 tölustafir frá 0-9. (sem gefur þá seinni töluna í raðtölunni og svo vartöluna).
+[8-9|0] Síðasta talan er svo 8, 9 eða 0.
+\b orðaskil ef það eru t.d. fleiri tölur/bókstafir alveg upp við þá er þetta ekki gild kennitala
+
+
+Til að finna kennitölur fyrirtækja. 
+
+Reglulega segðin: 
+\b[4567]\d{5}-\d{4}\b
+
+\b orðaskil
+[4567] Fyrsti stafurinn í kt. fyrirtækja er 4, 5,6 eða 7
+\d{5} Svo koma 5 tölustafir á eftir.
+- Svo kemur bandstrik 
+\d{4} Svo koma 4 tölustafir.
+\b orðaskil
