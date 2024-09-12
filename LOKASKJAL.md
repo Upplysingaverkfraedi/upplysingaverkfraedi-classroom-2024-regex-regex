@@ -434,29 +434,37 @@ Reglulega segðin:
 ```regex
 r"^(\w+(?:\s+\w+)?)\s+(\w+),\s*(.*?),\s*(\d{3}.*?),\s(.*?)$"
 ```
-**Útskýring***
-Byrjun á strengnum:
-^: Táknar byrjun línunnar. 
-
+**Útskýring**
+```regex
+^:
+```
+Táknar byrjun línunnar. 
+```regex
 (\w+(?:\s+\w+)?)
+```
 \w+: Passar einn eða fleiri bókstafi, tölustafi eða undirstrik.
 (?:\s+\w+)?: Valfrjáls hópur sem passar á bil (\s+) og annað orð (\w+). Þetta gerir það mögulegt að fyrsta hluti geti verið eitt orð eða tvö orð. Þetta er fyrsta fang (capture group).
-
+```regex
 \s+(\w+)
+```
 \s+: Passar eitt eða fleiri bil.
 (\w+): Passar eitt orð og fangar það. Þetta er annað fang.
-
+```regex
 ,\s*(.*?)
+```
 ,: Passar kommumark.
 \s*: Passar engin eða fleiri bil.
 (.*?): Passar hvaða texta sem er þar til næsta kommumark og fangar það. Þetta er þriðja fang.
-
+```regex
 ,\s*(\d{3}.*?)
+```
 ,: Passar kommumark.
 \s*: Passar engin eða fleiri bil.
 (\d{3}.*?): Passar þrjár tölur og eftirfylgjandi texta og fangar það. Þetta er fjórða fang.
 
+```regex
 ,\s(.*?)$
+```
 ,: Passar kommumark.
 \s: Passar eitt bil.
 (.*?): Passar hvaða texta sem er þar til endir línunnar og fangar það. Þetta er síðasta fang.
