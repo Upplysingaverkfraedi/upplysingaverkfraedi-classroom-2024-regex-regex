@@ -50,7 +50,7 @@ notar aðeins ,,fangaða" hópa og þar eru engar kommur nema það sé tekið f
 
 Hér fyrir neðan má sjá þetta útfært í python kóða. Restin af kóðanum má finna inni á skráni: regex_reorder.py
 
-   def endurraða_skra(linur):
+`def endurraða_skra(linur)`
     """"
     Tekur línur á formattinu Jón Jónsson, Litla-Saurbæ, 816 Ölfusi, 555-1234
     Guðrún Helgadóttir, Fiskislóð 15,  101 Reykjavík, 510-7000
@@ -71,7 +71,7 @@ Hér fyrir neðan má sjá þetta útfært í python kóða. Restin af kóðanum
             newline = re.sub(pattern, substitution, lina)  # enduraða línunum eftir substitution-inu
             result.append(newline)  # bæta enduraðaðri línunni við útkomu listann
 
-    return result
+    return result ```
 
 Niðurstaðan birtist úr skjalinu heimilisfang_simanumer_nafn.tsv
 
