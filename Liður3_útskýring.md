@@ -48,24 +48,19 @@ að í reglulegu segðinni að ofan eru kommurnar aðeins til staðar til að se
 á skipulagðan hátt en `([^,]+)` sér til þess að komman sé ekki tekin með í úttakið. Substitution
 notar aðeins ,,fangaða" hópa og þar eru engar kommur nema það sé tekið fram.
 
-
 Hér fyrir neðan má sjá þetta útfært í python kóða. Restin af kóðanum má finna inni á skráni: regex_reorder.py
 
-
-def endurraða_skra(linur):
-""""
-Tekur línur á formattinu Jón Jónsson, Litla-Saurbæ, 816 Ölfusi, 555-1234
-Guðrún Helgadóttir, Fiskislóð 15, 101 Reykjavík, 510-7000
-Jón Oddur Guðmundsson, Úthlíð 6, 450 Patreksfirði, 897-1234
-og skilar endurröðuðum línum á formattinu Litla-Saurbæ	816 Ölfusi	555-1234	Jónsson, Jón
-Fiskislóð 15	101 Reykjavík	510-7000	Helgadóttir, Guðrún
-Úthlíð 6	450 Patreksfirði	897-1234	Guðmundsson, Jón Oddur. Þannig Orðunum er enduraðað
-Kommur fara út nema á milli eftirnafns og fornafns og bil myndast.
-
-
+   def endurraða_skra(linur):
+    """"
+    Tekur línur á formattinu Jón Jónsson, Litla-Saurbæ, 816 Ölfusi, 555-1234
+    Guðrún Helgadóttir, Fiskislóð 15,  101 Reykjavík, 510-7000
+    Jón Oddur Guðmundsson, Úthlíð 6, 450 Patreksfirði, 897-1234
+    og skilar endurröðuðum línum á formattinu Litla-Saurbæ	816 Ölfusi	555-1234	      Jónsson, Jón
+    Fiskislóð 15	101 Reykjavík	510-7000	Helgadóttir, Guðrún
+    Úthlíð 6	450 Patreksfirði	897-1234	Guðmundsson, Jón Oddur. Þannig Orðunum er enduraðað
+    Kommur fara út nema á milli eftirnafns og fornafns og bil myndast.
 
     substitution = r'\3\t\4\t\5\t\2\t\1'
-
     """
     result = []
     pattern = r'([^,]+)\s([^,]+),\s([^,]+),\s([^,]+),\s(.+)'  # reges pattern notað til að bera kennsl á og hópa saman miðað við formattið
@@ -77,7 +72,6 @@ Kommur fara út nema á milli eftirnafns og fornafns og bil myndast.
             result.append(newline)  # bæta enduraðaðri línunni við útkomu listann
 
     return result
-
 
 Niðurstaðan birtist úr skjalinu heimilisfang_simanumer_nafn.tsv
 
