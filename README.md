@@ -144,12 +144,8 @@ Litla-Saurbæ	816 Ölfusi	555-1234	Jónsson, Jón
 Fiskislóð 15	101 Reykjavík	510-7000	Helgadóttir, Guðrún
 Úthlíð 6	450 Patreksfirði	897-1234	Guðmundsson, Jón Oddur
 ```
-Vistið úttakið í nýja skrá sem er gefin sem argument við keyrslu. Beinagrind að kóða má finna í 
-skránni `code/regex_reorder.py`. Til að keyra kóða þarf að keyra í skelinni:
+Til að keyra kóða þarf að keyra REGEX_Tyrell.ipynb jupyter notebookið. Skjalið "heimilisfang_simanumer_nafn.tsv" mun þá vistast sjalfkrafa í "data" folderinu. 
 
-```bash
-python3 code/regex_reorder.py --infile data/nafn_heimilisfang_simanumer.csv --outfile data/heimilisfang_simanumer_nafn.tsv  
-```
 
 ### 4. Gagnaúrvinnsla
 Algengt gagnaúrvinnsluvandamál er að taka hrágögn (t.d. af vefsíðum) og breyta þeim í vinnanlegt 
