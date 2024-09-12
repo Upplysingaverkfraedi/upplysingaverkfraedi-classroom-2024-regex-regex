@@ -75,10 +75,10 @@ r'([^,]+)\s([^,]+)(?:\s([^,]+))?,\s*([^,]+),\s*([^,]+),\s*(\d+-\d+)'
 
 ### 4. *Tímataka*
 
-<tr> - byrjun á töfluröð
-\s* - núll eða fleiri bil eða nýjar línur
-<td[^>]*> - [^>]* leyfir hvaða eiginleika sem er innan reitarins nema ">". getur þá verið hvaða klasi sem er.
-1</td> - þetta er reitur sem inniheldur töluna 1 og lokast með <\td>. Fyrsti dálkurinn í röðinni.
-\s*<td[^>]*>1</td> - þessi dálkur inniheldur líka töluna 1. \s* sér um að bil séu meðhöndluð eins og greint var frá að ofan.
-\s*<td[^>]*>Simen Nordahl Svendsen</td> - passar við reitinn sem inniheldur textann "Simen Nordahl Svendsen". Finnur röðina þar sem nafnið er "Simen Nordahl Svendsen".
-(.*?) - passar við hvaða staf sem er nema nýja línu og eins lítið og mögulegt er. Nær innihaldi innan raðarinnar milli nafnsins og lokunarmarkanna </tr>.
+\<tr\> - byrjun á töfluröð  
+\\s\* - núll eða fleiri bil eða nýjar línur  
+\<td[^>]*\> - [^>]* leyfir hvaða eiginleika sem er innan reitarins nema ">" (flúrað sem "\>"). Getur þá verið hvaða klasi sem er.  
+1\</td\> - þetta er reitur sem inniheldur töluna 1 og lokast með \</td\>. Fyrsti dálkurinn í röðinni.  
+\\s\*\<td[^>]*\>1\</td\> - þessi dálkur inniheldur líka töluna 1. \\s\* sér um að bil séu meðhöndluð eins og greint var frá að ofan.  
+\\s\*\<td[^>]*\>Simen Nordahl Svendsen\</td\> - passar við reitinn sem inniheldur textann "Simen Nordahl Svendsen". Finnur röðina þar sem nafnið er "Simen Nordahl Svendsen".  
+\(.\*?\) - passar við hvaða staf sem er nema nýja línu og eins lítið og mögulegt er. Nær innihaldi innan raðarinnar milli nafnsins og lokunarmarkanna \</tr\>.
