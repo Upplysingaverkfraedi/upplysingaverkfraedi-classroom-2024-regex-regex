@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 import argparse
+import re
 
 
 def parse_arguments():
@@ -21,10 +22,23 @@ def fetch_html(url):
         print(f"Tókst ekki að sækja gögn af {url}")
         return None
 
+def is_valid_url(url):
+    pattern = re.compile(r'https://(www\.)?timataka\.net/.+?/urslit/\?race=\d+&cat=[a-z]+(&age=\d+)?')
+    return re.match(pattern, url) is not None
+
 
 def parse_html(html):
-    # Hér þarf að útfæra reglulega segð til að vinna úr niðurstöðum, ekki er leyfilegt að nota
-    # pakka eins og BeautifulSoup til að leysa verkefnið.
+    """
+    Vinnur úr HTML með reglulegri segð og finnur keppnisnúmer, nöfn keppenda og tíma
+    """
+    pattern = re.compile(r'<tr>\s*<td>(?P<rank>\d+)</td>\s*<td>(?P<name>.+?)</td>\s*<td>(?P<ime>\d{1,2}:\d{2}:\d{2})</td>\s*<td>(?P<category>.+?)</td>', re.DOTALL)
+
+    results = []
+    for match in re.finditer(pattern, html):
+        results.append(match.groupdict())
+
+    return results
+
     raise NotImplementedError("Eftir að útfæra reglulega segð sem vinnur úr HTML gögnum.")
 
 
@@ -51,16 +65,10 @@ def main():
         print(f"Inntaksskráin {args.output} þarf að vera csv skrá.")
         return
 
-    if not 'timataka.net' in args.url:
-        # TODO uppfærið if-skilyrðið til að nota reglulega segð sem passar að URL sé frá
-        #  timataka.net og sýnir úrslit, t.d.
-        #  https://timataka.net/jokulsarhlaup2024/urslit/?race=2&cat=m
-        #  https://www.timataka.net/snaefellsjokulshlaupid2014/urslit/?race=1&cat=m&age=0039
-        #  en ekki
-        #  https://www.timataka.net/snaefellsjokulshlaupid2014/urslit/?race=1
-        print("Slóðin er ekki frá timataka.net")
+    if not is_valid_url(args.url):
+        print("Slóðin er ekki frá tímataka.net eða er ekki í réttu formi.")
         return
-
+    
     html = fetch_html(args.url)
     if not html:
         raise Exception("Ekki tókst að sækja HTML gögn, athugið URL.")
