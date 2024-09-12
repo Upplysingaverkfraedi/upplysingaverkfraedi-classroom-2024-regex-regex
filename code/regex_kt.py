@@ -1,5 +1,5 @@
 import argparse
-
+import re
 
 def parse_arguments():
     """
@@ -51,16 +51,25 @@ def finna_kennitolur(text, leit_af_einstaklingum, leit_af_fyrirtaekjum):
     :param leit_af_fyrirtaekjum:    (bool) Leita að kennitölum fyrirtækja
     :return:                        (list) Listi af kennitölum
     """
-
     kennitolur = []
+    regex_list = []
 
     if leit_af_einstaklingum:
         # Regluleg segð fyrir kennitölur einstaklinga
-        raise NotImplementedError("Fall sem leitar að kt einstaklinga hefur enn ekki verið útfært.")
+        regex_individual = r'\b(?:0[1-9]|[1-2][0-9]|3[0-1])(?:0[1-9]|1[0-2])\d{2}-(?:2[0-9]|[3-9]\d)\d[890]\b'
+        regex_list.append(regex_individual)
 
     if leit_af_fyrirtaekjum:
         # Regluleg segð fyrir kennitölur fyrirtækja
-        raise NotImplementedError("Fall sem leitar að kt fyrirtækja hefur enn ekki verið útfært.")
+        regex_company = r'\b[4-7][0-9](?:0[1-9]|1[0-2])\d{2}-[0-9]{2}[0-9][890]\b'
+        regex_list.append(regex_company)
+
+    # Sameina öll regex í eitt ef bæði einstaklingar og fyrirtæki eru valdir
+    combined_regex = '|'.join(regex_list)
+
+    # Nota re.findall með sameinuðum regex til að finna bæði einstaklinga og fyrirtæki
+    for line in text:
+        kennitolur.extend(re.findall(combined_regex, line))
 
     return kennitolur
 
@@ -86,3 +95,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+    
