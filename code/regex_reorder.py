@@ -1,5 +1,6 @@
 import os
 import argparse
+import re
 
 
 def parse_arguments():
@@ -34,22 +35,21 @@ def lesa_skra(file_path):
 def endurraða_skra(linur):
     endurröðuðar_linur = []
     for lina in linur:
-        # Skipta línunum í parta
-        parts = lina.strip().split(', ')
+        # Notum reglulega segð til þess að skipta línunum upp í parta
+        pattern = r'([^,]+)\s([^,]+),\s([^,]+),\s([^,]+),\s(.+)'
+        match = re.match(pattern, lina.strip())
+        if match:
+            name, address, phone_number = match.groups()
 
-        # Draga út nafnahlutanna
-        name_parts = parts[0].split()
+            # Setjum partana saman aftur með reglulegri segð
+            name_pattern = r'(\w+)\s+(\w+)\s+(\w+)'
+            name_match = re.match(name_pattern, name)
+            if name_match:
+                first_middle_names, last_name = name_match.group(1, 2)
 
-        # Endurraða pörtunum
-        address = ' '.join(parts[1:-1])  # heimilisfang
-        phone_number = parts[-1]  # símanúmer
-        last_name = name_parts[-1]  # kenninafn
-        first_middle_names = ' '.join(name_parts[:-1])  # eigninnafn millinafn
-
-        # Sameina partana aftur nema með réttu merki á milli sem á aðeins við í nafni
-        endurröðuð_lina = '\t'.join([address, phone_number, last_name + ', ' + first_middle_names])
-
-        endurröðuðar_linur.append(endurröðuð_lina)
+                # Sameinum partana í réttri röð
+                endurröðuð_lina = '\t'.join([address, phone_number, f'{last_name}, {first_middle_names}'])
+                endurröðuðar_linur.append(endurröðuð_lina)
 
     return endurröðuðar_linur
 
