@@ -14,7 +14,9 @@ Ekki logleg kennitala: 151617-1819.
 
 Spurning 2:
 
+Mögulega þarf að nota þennan koda til að runa file fyrir sp2
 
+python3 sp2.py --file data/email.txt
 
 
 Spurning 3: Upplýsingar um keyrslu
