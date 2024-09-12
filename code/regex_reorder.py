@@ -92,5 +92,5 @@ def main():
     skrifa_nidurstodur(args.outfile, linur)
 
 
-    if _name_ == "_main_":
-        main()
+if __name__ == "__main__":
+    main()
