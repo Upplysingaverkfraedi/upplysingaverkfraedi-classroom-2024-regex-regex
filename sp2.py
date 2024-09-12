@@ -47,6 +47,7 @@ def finna_netfong(text): #Hér á ég að breyta einhverju.
         for match in matches:
                 matches_list.append(f"Match: {match.group(0)} @ {match.start()}: {match.end()}") #@
     return matches_list
+
     
     #raise NotImplementedError("Regluleg segð til að finna netföng hefur ekki verið útfærð.")
     
