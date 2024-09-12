@@ -430,6 +430,40 @@ sp3.py er python skjal fyrir dæmi 3. Keyra skrá með:
 
 Við notum requests til að sækja HTML-skjalið af tímataka.net og reglulega segð til að greina gögnin. Lausnin greinir sjálfkrafa hvort keppnin sé einstaklingskeppni, liðakeppni eða hraðaniðurstöður og sækir viðeigandi gögn. Niðurstöðurnar eru svo vistaðar í CSV-skrá með pandas fyrir frekari greiningu. Auk þess er möguleiki á að vista HTML-skjalið til að skoða það betur. Lausnin tryggir að gögnin séu unnin rétt óháð keppnisformi.
 
+Reglulega segðin: 
+```regex
+r"^(\w+(?:\s+\w+)?)\s+(\w+),\s*(.*?),\s*(\d{3}.*?),\s(.*?)$"
+```
+**Útskýring***
+Byrjun á strengnum:
+^: Táknar byrjun línunnar. 
+
+(\w+(?:\s+\w+)?)
+\w+: Passar einn eða fleiri bókstafi, tölustafi eða undirstrik.
+(?:\s+\w+)?: Valfrjáls hópur sem passar á bil (\s+) og annað orð (\w+). Þetta gerir það mögulegt að fyrsta hluti geti verið eitt orð eða tvö orð. Þetta er fyrsta fang (capture group).
+
+\s+(\w+)
+\s+: Passar eitt eða fleiri bil.
+(\w+): Passar eitt orð og fangar það. Þetta er annað fang.
+
+,\s*(.*?)
+,: Passar kommumark.
+\s*: Passar engin eða fleiri bil.
+(.*?): Passar hvaða texta sem er þar til næsta kommumark og fangar það. Þetta er þriðja fang.
+
+,\s*(\d{3}.*?)
+,: Passar kommumark.
+\s*: Passar engin eða fleiri bil.
+(\d{3}.*?): Passar þrjár tölur og eftirfylgjandi texta og fangar það. Þetta er fjórða fang.
+
+,\s(.*?)$
+,: Passar kommumark.
+\s: Passar eitt bil.
+(.*?): Passar hvaða texta sem er þar til endir línunnar og fangar það. Þetta er síðasta fang.
+$: Táknar endir línunnar.
+
+
+
 # KÓÐI FYRIR SPURNINGU 3:
 import os
 import argparse
