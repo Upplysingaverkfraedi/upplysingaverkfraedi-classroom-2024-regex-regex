@@ -1,4 +1,5 @@
 import argparse
+import re
 
 
 def parse_arguments():
@@ -55,12 +56,15 @@ def finna_kennitolur(text, leit_af_einstaklingum, leit_af_fyrirtaekjum):
     kennitolur = []
 
     if leit_af_einstaklingum:
-        # Regluleg segð fyrir kennitölur einstaklinga
-        raise NotImplementedError("Fall sem leitar að kt einstaklinga hefur enn ekki verið útfært.")
+        einstaklingar_pattern = r'\b(?:0[1-9]|[1-2][0-9]|3[0-1])(?:0[1-9]|1[0-2])\d{2}-(?:2[0-9]|[3-9]\d)\d[890]\b'
+        for line in text:
+            kennitolur.extend(re.findall(einstaklingar_pattern, line))
+        
 
     if leit_af_fyrirtaekjum:
-        # Regluleg segð fyrir kennitölur fyrirtækja
-        raise NotImplementedError("Fall sem leitar að kt fyrirtækja hefur enn ekki verið útfært.")
+        fyrirtaeki_pattern = r'\b[4-9]\d{5}-[0-7]\d{3}\b'
+        for line in text:
+            kennitolur.extend(re.findall(fyrirtaeki_pattern, line))
 
     return kennitolur
 
