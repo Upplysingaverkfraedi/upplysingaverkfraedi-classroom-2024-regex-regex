@@ -1,5 +1,6 @@
 import os
 import argparse
+import re
 
 
 def parse_arguments():
@@ -35,6 +36,33 @@ def endurraða_skra(linur):
     """"
     Hér á eftir að uppfæra doc-streng sem lýsir fallinu betur.
     """
+    """
+    Tekur lista af línum sem inntak, beitir reglulegri segð til að umbreyta röðun gagna 
+    og skilar lista með endurröðuðum línum. Hver lína inniheldur nafn, heimilisfang 
+    og símanúmer, aðskilið með kommum. 
+
+    Reglan er að umbreyta gögnunum í eftirfarandi röð:
+    1) Heimilisfang
+    2) Staður og póstnúmer
+    3) Símanúmer
+    4) Kenninafn, eiginnafn og millinafn (ef til staðar), aðskilið með tab (\\t).
+    """
+    endurraðaðar_línur = []
+    for lina in linur:
+        match = re.match(r'([A-Za-záéíóúýþæðöÁÉÍÓÚÝÞÆÖ]+)\s*([A-Za-záéíóúýþæðöÁÉÍÓÚÝÞÆÖ]*?)\s*([A-Za-záéíóúýþæðöÁÉÍÓÚÝÞÆÖ]+),\s*([^,]+),\s*([^,]+),\s*(\d{3}-\d{4})', lina)
+        if match:
+            eiginnafn = match.group(1).strip()
+            millinafn = match.group(2).strip()
+            kenninafn = match.group(3).strip()
+            heimilisfang = match.group(4).strip()
+            stadur_postnumer = match.group(5).strip()
+            simanumer = match.group(6).strip()
+
+            fullt_nafn = f"{kenninafn}, {eiginnafn} {millinafn}".strip()
+            nytt_lina = f"{heimilisfang}\t{stadur_postnumer}\t{simanumer}\t{fullt_nafn}".strip()
+            endurraðaðar_línur.append(nytt_lina)
+
+    return endurraðaðar_línur
 
     raise NotImplementedError("Regluleg segð til að endurraða línur hefur ekki verið útfærð.")
 
@@ -49,7 +77,6 @@ def skrifa_nidurstodur(output_file, linur):
     with open(output_file, 'w') as file:
         for lina in linur:
             file.write(lina + '\n')
-
 
 def main():
     """
