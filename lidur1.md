@@ -12,10 +12,9 @@ Byrjum á að svara fyrstu spurningunni þar sem við eigum að skrifa tvær reg
 **Forsendur: Samkvæmt Þjóðskrá Íslands** 
 Form einstaklings kennitalna á Íslandi er alltaf það sama þ.e. Kennitalann er í heildina 10 tölustafir þar sem fyrstu 6 eru myndaðir af fæðingardagsetningu einstaklingsins.  
 Næstu tveir tölustafir hafa í raun enga merkingu og er þeim alla jafna úthlutað í röð frá og með 20, t.d. 120160-33.   
-Því næst er svokölluð öryggistalan reiknuð út en hún má vera á bilinu 0 til 9. Aftasti stafur í kennitölu er 8, 9 eða 0 og merkir hann öldina sem viðkomandi er fæddur á. Kt. gæti þá litið svona út 120160-3350.
+Því næst er svokölluð öryggistalan reiknuð út en hún má vera á bilinu 0 til 9. Aftasti stafur í kennitölu er 8, 9 eða 0 og merkir hann öldina sem viðkomandi er fæddur á.
 
-Form fyrirtækis kennitalna á Íslandi er þó aðeins frábrugðið. Kennitalan er í heild sinni 10 stafir myndaðir af stofnunardagsetningu fyrirtækisins en fyrsta talan er hækkuð um 4. Sem dæmi segjum að fyrirtæki sé stofnað 05.11.2005 þá yrðu fyrstu 6 stafir kennitölunnar án upphækkunarinnar 051105 en á réttu formi yrði fyrsta talan hækkuð um 4 og því yrði hún kt. 451105. Því getur fyrsta talann einungis verið 4, 5, 6 eða 7. Vegna 0+4, 1+4, 2+4, 3+4. Þar sem enginn mánuður hefur 40 daga. Síðstu 4 stafir fylja reglunu: tölustafur 7-8 er frá 01-99, tölustafur 9 er frá 0-9 og tölustafur 10 er annaðhvort 8,9 eða 0. Kt. gæti þá litið svona út 451105-2009.
-
+Form fyrirtækis kennitalna á Íslandi er þó aðeins frábrugðið. Kennitalan er í heild sinni 6 stafir myndaðir af stofnunardagsetningu fyrirtækisins en fyrsta talan er hækkuð um 4. Sem dæmi segjum að fyrirtæki sé stofnað 05.11.2005 þá yrði kennitalan án upphækkunarinnar 051105 en á réttu formi yrði fyrsta talan hækkuð um 4 og því yrði lokaútgáfan kt. 451105. Því getur fyrsta talann einungis verið 4, 5, 6 eða 7. Vegna 0+4, 1+4, 2+4, 3+4. Enginn mánuður hefur 40 daga.
 
 Því getum við byrjað að skrifa reglulega segð sem finnur kennitölu einstaklings og svo fyrirtækis.  
 
@@ -146,7 +145,8 @@ Líkt og áðan var sagt þá merkir *\b* mörk segðar. Þetta *\b* tryggir að
 **Dæmi**
 Hér er dæmi um kennitölu fyrirtækis: 560787-2009
 
-560787: Fæðingardagsetning (16. Júlí 1987). Búið að uppfæra fyrsta staf um +4 Sjáum að tölurnar tvær í miðjunni geta ekki verið 00 eða 13,14,15... o.s.frv og fyrsta talan getur einungis verið 4,5,6 eða 7. Tala 7-8 er frá 01-99 (20) Tala 9 er frá 0-9 og (0) Tala 10 er annaðhvort 8,9, eða 0 (9)
+560787: Fæðingardagsetning (16. Júlí 1987). Búið að uppfæra fyrsta staf um +4
+Sjáum að tölurnar tvær í miðjunni geta ekki verið 00 eða 13,14,15... o.s.frv og fyrsta talan getur einungis verið 4,5,6 eða 7.
 
 
 Til þess að geta keyrt kóðann þarftu fyrst að gera "cd code" skipunina og til að leita eftir einstaklings kennitölum skrifaru einfaldlega skipunina: 
