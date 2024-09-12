@@ -34,8 +34,21 @@ def finna_netfong(text): #Hér á ég að breyta einhverju.
     :return:     (list) Listi af netföngum
     """
 
+    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,3}(?:\.[a-zA-Z]{2,})?$' 
+    # útilokar ólögleg netföng
+
+    Cp = re.compile(pattern)
+    matches_list = []
+
+    for line in text:
+        matches = Cp.finditer(line)
+        #print(matches)
     
-    raise NotImplementedError("Regluleg segð til að finna netföng hefur ekki verið útfærð.")
+        for match in matches:
+                matches_list.append(f"Match: {match.group(0)} @ {match.start()}: {match.end()}") #@
+    return matches_list
+    
+    #raise NotImplementedError("Regluleg segð til að finna netföng hefur ekki verið útfærð.")
     
 
 
