@@ -83,7 +83,7 @@ Hér er dæmi um kennitölu: 160405-2650
 
 **Fyrirtækis regluleg segð:**
 ```regex
-\b[4-7][0-9](?:0[1-9]|1[0-2])\d{2}\b
+\b[4-7][0-9](?:0[1-9]|1[0-2])\d{2}-[0-9]{2}[0-9][890]\b
 ```
 Þar sem,
 ```regex
@@ -99,7 +99,7 @@ Hér er dæmi um kennitölu: 160405-2650
 ```
 Þetta er „stafasett“ sem leyfir hvaða tölustaf sem er frá 0 til 9. Þetta þýðir að önnur talan getur verið hvaða tölustafur sem er.
 ```regex
-(0[1-9]|1[0-2]): Þriðja og fjórða talan
+(?:0[1-9]|1[0-2]): Þriðja og fjórða talan
 ```
 Þetta er hópur með „valkostum“ (|), sem þýðir að það mun passa annað hvort af tveimur valkostum gildi.  
 **Valkostur 1 - 0[1-9]:**   
@@ -117,6 +117,26 @@ Passar að á eftir 1 fylgir tölustafur frá 0 til 2. Þetta tryggir að ef þr
 Sama útskýring og áðan... En þetta merkir í reglulegum segðum hópun án upptöku (e. non-capturing group). Dæmi: (?:abc) passar við abc í streng en fangar það ekki. Þetta þýðir að það verður ekki hluti af niðurstöðum sem findall() skilar eða annarra aðgerða sem geyma upptökur úr regex.
 
 ```regex
+-:
+```
+Strik (hyphen) sem aðskilur dagsetningu frá eftirfarandi hluta kennitölunnar.
+
+```regex
+[0-9]{2}: 7-8 tala
+```
+Þetta eru tveir tölustafir sem getur verið hvaða tveir tölustafir sem er (01 til 99).
+
+```regex
+[0-9]:
+```
+Þetta er einn tölustafur sem getur verið hvaða tala sem er frá 0 til 9.
+
+```regex
+[890]:
+```
+Þetta er síðasti tölustafur sem merkir öldina og getur verið 8, 9 eða 0.
+
+```regex
 \b: Segðamörk
 ```
 Líkt og áðan var sagt þá merkir *\b* mörk segðar. Þetta *\b* tryggir að leitin endar á orðamörk. 
@@ -129,7 +149,7 @@ Hér er dæmi um kennitölu fyrirtækis: 560787
 Sjáum að tölurnar tvær í miðjunni geta ekki verið 00 eða 13,14,15... o.s.frv og fyrsta talan getur einungis verið 4,5,6 eða 7.
 
 
-Til þess að geta keyrt kóðann og leitað eftir einstaklings kennitölum skrifaru einfaldlega skipunina: 
+Til þess að geta keyrt kóðann þarftu fyrst að gera "cd code" skipunina og til að leita eftir einstaklings kennitölum skrifaru einfaldlega skipunina: 
 
 ```regex
 python regex_kt.py --file inntaksskra.txt --einstaklingar
@@ -137,22 +157,14 @@ python regex_kt.py --file inntaksskra.txt --einstaklingar
 
 Þar sem regex_kt.py er python skjalið með kóðanum og inntaksskra.txt er textaskjal í tölvunni þinni með ýmsum kennitölum. Í okkar tilfelli notuðum við textaskjal sem lítur svona út: 
 
-Kennitala einstaklings: 120160-33
-Kennitala einstaklings: 300905-3950
-Kennitala fyrirtækis:451105
-Kennitala einstaklings: 010187-2389
-Kennitala fyrirtækis:550105
-Kennitala einstaklings: 240305-3940
-Kennitala fyrirtækis: 780904
-Kennitala einstaklings: 300704-5580
-Kennitala fyrirtækis: 641098
-Kennitala fyrirtækis: 1410904
-Kennitala einstaklings: 300495-670
-Kennitala einstaklings: 300700-3950
-Kennitala einstaklings: 000478-3950
-Kennitala fyrirtækis: 771966
-Kennitala fyrirtækis: 440506
-Kennitala einstaklings: 300704-3950
+
+Kennitala Haskola Islands:
+Vigdis Finnbogadottur: 150430-2329 
+Guðni Th. Johannessonar: 260668-4719. 
+Halla Tomasdóttir: 111068-4379
+Kennitala Auður Capital: 640507-0390. 
+Ekki logleg kennitala: 151617-1819.
+
 
 og --einstaklingar vísar í kóðann til að leita eftir löglegum kennitölum sem uppfyllir reglulegu segðina sem við gerðum í byrjun. Með þessari skipun á forritið að lesa út löglegar kennitölur og einungis prenta þær þ.e. til dæmis fyrsta kennitalan í texta skjalinu má sjá að fylgir ekki reglum íslensku kennitalnanna og er því ekki prentuð.
 
