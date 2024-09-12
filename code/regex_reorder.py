@@ -1,5 +1,6 @@
 import os
 import argparse
+import re
 
 
 def parse_arguments():
@@ -32,12 +33,22 @@ def lesa_skra(file_path):
 
 
 def endurraða_skra(linur):
-    """"
-    Hér á eftir að uppfæra doc-streng sem lýsir fallinu betur.
-    """
+    endurröðuðar_linur = []
+    for lina in linur:
+        # Notum reglulega segð til þess að skipta línunum upp í parta
+        pattern = r'([^,]+)\s([^,]+),\s([^,]+),\s([^,]+),\s(.+)'
+        match = re.match(pattern, lina.strip())
+        if match:
+            ## print(len(match.groups()))
+            name, last_name, address, address1, phone_number = match.groups()
+            ## print(f"{name}, {last_name}, {address}, {phone_number}")
 
-    raise NotImplementedError("Regluleg segð til að endurraða línur hefur ekki verið útfærð.")
+            
+            # Sameinum partana í réttri röð
+            endurröðuð_lina = '\t'.join([address, address1, phone_number, f'{last_name}, {name}'])
+            endurröðuðar_linur.append(endurröðuð_lina)
 
+    return endurröðuðar_linur
 
 def skrifa_nidurstodur(output_file, linur):
     """
