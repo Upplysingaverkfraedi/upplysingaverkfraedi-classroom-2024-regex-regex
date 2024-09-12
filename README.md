@@ -3,10 +3,6 @@ Keyra skrá með:
 
 Þá býr hann til skjal í data möppunni þar sem búið er að endur raða. skipunin tekur inn skránna **nafn_heimilisfang_simanumer.csv** og skilar skránni **heimilisfang_simanumer_nafn.tsv** (í data möppu).
 
-Þá býr hann til skjal í data möppunni þar sem búið er að endur raða. skipunin tekur inn skránna **nafn_heimilisfang_simanumer.csv** og skilar skránni **heimilisfang_simanumer_nafn.tsv** (í data möppu).
-
-Þá býr hann til skjal í data möppunni þar sem búið er að endur raða. skipunin tekur inn skránna **nafn_heimilisfang_simanumer.csv** og skilar skránni **heimilisfang_simanumer_nafn.tsv** (í data möppu).
-
 
 Við notum requests til að sækja HTML-skjalið af tímataka.net og reglulega segð til að greina gögnin. Lausnin greinir sjálfkrafa hvort keppnin sé einstaklingskeppni, liðakeppni eða hraðaniðurstöður og sækir viðeigandi gögn. Niðurstöðurnar eru svo vistaðar í CSV-skrá með pandas fyrir frekari greiningu. Auk þess er möguleiki á að vista HTML-skjalið til að skoða það betur. Lausnin tryggir að gögnin séu unnin rétt óháð keppnisformi.
 
