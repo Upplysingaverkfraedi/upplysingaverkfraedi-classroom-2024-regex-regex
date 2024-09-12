@@ -12,9 +12,9 @@ Byrjum á að svara fyrstu spurningunni þar sem við eigum að skrifa tvær reg
 **Forsendur: Samkvæmt Þjóðskrá Íslands** 
 Form einstaklings kennitalna á Íslandi er alltaf það sama þ.e. Kennitalann er í heildina 10 tölustafir þar sem fyrstu 6 eru myndaðir af fæðingardagsetningu einstaklingsins.  
 Næstu tveir tölustafir hafa í raun enga merkingu og er þeim alla jafna úthlutað í röð frá og með 20, t.d. 120160-33.   
-Því næst er svokölluð öryggistalan reiknuð út en hún má vera á bilinu 0 til 9. Aftasti stafur í kennitölu er 8, 9 eða 0 og merkir hann öldina sem viðkomandi er fæddur á.
+Því næst er svokölluð öryggistalan reiknuð út en hún má vera á bilinu 0 til 9. Aftasti stafur í kennitölu er 8, 9 eða 0 og merkir hann öldina sem viðkomandi er fæddur á. Kt. gæti þá litið svona út 120160-3350.
 
-Form fyrirtækis kennitalna á Íslandi er þó aðeins frábrugðið. Kennitalan er í heild sinni 6 stafir myndaðir af stofnunardagsetningu fyrirtækisins en fyrsta talan er hækkuð um 4. Sem dæmi segjum að fyrirtæki sé stofnað 05.11.2005 þá yrði kennitalan án upphækkunarinnar 051105 en á réttu formi yrði fyrsta talan hækkuð um 4 og því yrði lokaútgáfan kt. 451105. Því getur fyrsta talann einungis verið 4, 5, 6 eða 7. Vegna 0+4, 1+4, 2+4, 3+4. Enginn mánuður hefur 40 daga.
+Form fyrirtækis kennitalna á Íslandi er þó aðeins frábrugðið. Kennitalan er í heild sinni 10 stafir myndaðir af stofnunardagsetningu fyrirtækisins en fyrsta talan er hækkuð um 4. Sem dæmi segjum að fyrirtæki sé stofnað 05.11.2005 þá yrðu fyrstu 6 stafir kennitölunnar án upphækkunarinnar 051105 en á réttu formi yrði fyrsta talan hækkuð um 4 og því yrði hún kt. 451105. Því getur fyrsta talann einungis verið 4, 5, 6 eða 7. Vegna 0+4, 1+4, 2+4, 3+4. Þar sem enginn mánuður hefur 40 daga. Síðstu 4 stafir fylja reglunu: tölustafur 7-8 er frá 01-99, tölustafur 9 er frá 0-9 og tölustafur 10 er annaðhvort 8,9 eða 0. Kt. gæti þá litið svona út 451105-2009.
 
 Því getum við byrjað að skrifa reglulega segð sem finnur kennitölu einstaklings og svo fyrirtækis.  
 
