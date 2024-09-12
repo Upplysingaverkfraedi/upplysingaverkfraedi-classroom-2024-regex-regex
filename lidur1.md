@@ -143,10 +143,13 @@ Líkt og áðan var sagt þá merkir *\b* mörk segðar. Þetta *\b* tryggir að
 
 
 **Dæmi**
-Hér er dæmi um kennitölu fyrirtækis: 560787
+Hér er dæmi um kennitölu fyrirtækis: 560787-2009
 
 560787: Fæðingardagsetning (16. Júlí 1987). Búið að uppfæra fyrsta staf um +4
 Sjáum að tölurnar tvær í miðjunni geta ekki verið 00 eða 13,14,15... o.s.frv og fyrsta talan getur einungis verið 4,5,6 eða 7.
+Tala 7-8 er frá 01-99 (20)
+Tala 9 er frá 0-9 og (0)
+Tala 10 er annaðhvort 8,9, eða 0 (9)
 
 
 Til þess að geta keyrt kóðann þarftu fyrst að gera "cd code" skipunina og til að leita eftir einstaklings kennitölum skrifaru einfaldlega skipunina: 
