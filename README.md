@@ -1,6 +1,18 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/CMNHJo7M)
 # Reglulegar segðir (Regular Expressions)
 
+Til að keyra kíða í lið 1 þarf að gera eftirfarandi:
+
+1. python3 lidur1.py --data/kt.txt --einstaklingar fyrir einstaklinga
+2. python3 lidur1.py --data/kt.txt --fyrirtaeki fyrir fyrirtæki
+
+Til að Keyra kóða í Lið 4 þarf að gera eftirfarandi: 
+
+1. python3 -m venv path/to/venv
+2. source path/to/venv/bin/activate
+3. pip install requests pandas
+
+
 ## Leiðbeiningar
 
 - **Öll svör verða að vera rökstudd með skýrri röksemdafærslu.** Ekki verður veitt stig fyrir 

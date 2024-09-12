@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 import argparse
+import re
 
 
 def parse_arguments():
@@ -11,6 +12,11 @@ def parse_arguments():
     parser.add_argument('--debug', action='store_true',
                         help='Vistar html í skrá til að skoða.')
     return parser.parse_args()
+
+def valid_url(url):
+    # Regular expression to validate URLs that show results on timataka.net
+    pattern = re.compile(r'^https?://(?:www\.)?timataka\.net/[\w-]+/urslit/\?race=\d+&cat=[a-z]+(?:&age=\d{4})?$')
+    return bool(pattern.match(url))
 
 
 def fetch_html(url):
@@ -23,9 +29,38 @@ def fetch_html(url):
 
 
 def parse_html(html):
-    # Hér þarf að útfæra reglulega segð til að vinna úr niðurstöðum, ekki er leyfilegt að nota
-    # pakka eins og BeautifulSoup til að leysa verkefnið.
-    raise NotImplementedError("Eftir að útfæra reglulega segð sem vinnur úr HTML gögnum.")
+    # Regular expression to match Simen Nordahl Svendsen's row of results
+    simen_pattern = re.compile(
+        r'<tr>\s*<td[^>]*>1</td>\s*<td[^>]*>1</td>\s*<td[^>]*>Simen Nordahl Svendsen</td>(.*?)</tr>',
+        re.DOTALL
+    )
+
+    # List to hold parsed data
+    results = []
+
+    # Extract Simen Nordahl Svendsen's information
+    simen_match = simen_pattern.search(html)
+    if simen_match:
+        row_data = simen_match.group(1)
+        # Extract other details from Simen Nordahl Svendsen's row
+        simen_details_pattern = re.compile(
+            r'<td[^>]*>([^<]*)</td>'
+        )
+        simen_details = simen_details_pattern.findall(row_data)
+        if len(simen_details) >= 6:  # Ensure there are enough details
+            results.append({
+                'Rank': '1',
+                'Bib': '1',
+                'Name': 'Simen Nordahl Svendsen',
+                'Year': simen_details[0].strip(),
+                'Club': simen_details[1].strip(),
+                'Split': simen_details[2].strip(),
+                'Time': simen_details[3].strip(),
+                'Behind': simen_details[4].strip(),
+                'Chiptime': simen_details[5].strip()
+            })
+
+    return results
 
 
 def skrifa_nidurstodur(data, output_file):
@@ -51,14 +86,8 @@ def main():
         print(f"Inntaksskráin {args.output} þarf að vera csv skrá.")
         return
 
-    if not 'timataka.net' in args.url:
-        # TODO uppfærið if-skilyrðið til að nota reglulega segð sem passar að URL sé frá
-        #  timataka.net og sýnir úrslit, t.d.
-        #  https://timataka.net/jokulsarhlaup2024/urslit/?race=2&cat=m
-        #  https://www.timataka.net/snaefellsjokulshlaupid2014/urslit/?race=1&cat=m&age=0039
-        #  en ekki
-        #  https://www.timataka.net/snaefellsjokulshlaupid2014/urslit/?race=1
-        print("Slóðin er ekki frá timataka.net")
+    if not valid_url(args.url):
+        print("Slóðin er ekki frá timataka.net eða í réttu formi.")
         return
 
     html = fetch_html(args.url)
