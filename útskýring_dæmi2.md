@@ -8,7 +8,7 @@ Reglulega segðin sem að við notuðum fyrir email er: `\b[A-Za-z0-9.]+@(?!.*\.
 - `(?!.*\.\.)` þetta passar að það komi ekki tvöfaldur punktur neins staðar fyrir eftir núverandi stöðu í strengnum
     - `(?! mynstur)` er negative lookahead og þýðir að eitthvað mynstur sem er skilgreint inni í sviganum má ekki koma fram seinna í strengnum.
     - `.` táknar hvaða staf sem er og `*` táknar "0 eða fleiri skipti", þ.e. mynstrið má hvorki koma strax eða eftir einnhverja stafi
-    - \.\. merkir tvöfaldan punkt eða ..
+    - `\.\.` merkir tvöfaldan punkt eða ..
 - `[A-Za-z0-9.-]+` þar á eftir þýðir að næsti hluti netfangsins má innihalda alla bókstafi, stóra: `A-Z` og litla: `a-z`, alla tölustafi frá 0-9:`0-9`, `.` og .`-`
 - `+` þar á eftir það sé a.m.k. eitt eða fleiri af táknunnum í hornklofanum á undan
 - þar á eftir kemur punktur táknaður með `\.`
