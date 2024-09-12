@@ -39,17 +39,14 @@ def endurraða_skra(linur):
         pattern = r'([^,]+)\s([^,]+),\s([^,]+),\s([^,]+),\s(.+)'
         match = re.match(pattern, lina.strip())
         if match:
-            name, address, phone_number = match.groups()
+            ## print(len(match.groups()))
+            name, last_name, address, address1, phone_number = match.groups()
+            ## print(f"{name}, {last_name}, {address}, {phone_number}")
 
-            # Setjum partana saman aftur með reglulegri segð
-            name_pattern = r'(\w+)\s+(\w+)\s+(\w+)'
-            name_match = re.match(name_pattern, name)
-            if name_match:
-                first_middle_names, last_name = name_match.group(1, 2)
-
-                # Sameinum partana í réttri röð
-                endurröðuð_lina = '\t'.join([address, phone_number, f'{last_name}, {first_middle_names}'])
-                endurröðuðar_linur.append(endurröðuð_lina)
+            
+            # Sameinum partana í réttri röð
+            endurröðuð_lina = '\t'.join([address, address1, phone_number, f'{last_name}, {name}'])
+            endurröðuðar_linur.append(endurröðuð_lina)
 
     return endurröðuðar_linur
 
@@ -95,5 +92,5 @@ def main():
     skrifa_nidurstodur(args.outfile, linur)
 
 
-if __name__ == "__main__":
-    main()
+    if _name_ == "_main_":
+        main()
