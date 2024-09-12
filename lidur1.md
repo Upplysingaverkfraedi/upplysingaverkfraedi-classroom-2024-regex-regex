@@ -158,7 +158,7 @@ python regex_kt.py --file inntaksskra.txt --einstaklingar
 Þar sem regex_kt.py er python skjalið með kóðanum og inntaksskra.txt er textaskjal í tölvunni þinni með ýmsum kennitölum. Í okkar tilfelli notuðum við textaskjal sem lítur svona út: 
 
 
-Kennitala Haskola Islands:
+Kennitala Haskola Islands: 600169-2039
 Vigdis Finnbogadottur: 150430-2329 
 Guðni Th. Johannessonar: 260668-4719. 
 Halla Tomasdóttir: 111068-4379
