@@ -75,6 +75,12 @@ def main():
     if not html:
         raise Exception("Ekki tókst að sækja HTML gögn, athugið URL.")
 
+    # Regluleg segð til að tryggja rétt form á slóðinni
+        url_pattern = re.compile(r'^https:\/\/(www\.)?timataka\.net\/.+\/urslit\/\?race=\d+&cat=[a-zA-Z]+')
+        if not url_pattern.match(args.url):
+            print("Slóðin er ekki í réttu formi fyrir timataka.net úrslit.")
+            return
+
     if args.debug:
         html_file = args.output.replace('.csv', '.html')
         with open(html_file, 'w') as file:
