@@ -40,11 +40,14 @@ def endurraða_skra(linur):
 
     for lina in linur:
         # Nota reglulega segð til að finna nafn, heimilisfang og símanúmer
-        pattern = r"^(.*?),\s*(.*?),\s*(\d{3}-\d{4})$"
+        # Hér virka einfaldar stafarhúgur aðskildar af kommum
+        pattern = r"^(.*?),\s*(.*\s+\d{3}\s+[^\s]+),\s*(\d{3}-\d{4})$"
         match = re.match(pattern, lina.strip())
         
         if match:
             nafn, heimilisfang, simanumer = match.groups()
+
+            heimilisfang = heimilisfang.replace(",", "")
             
             # Skipta nafni í eiginnafn, millinafn og kenninafn
             nafn_partar = nafn.split()
@@ -62,7 +65,7 @@ def endurraða_skra(linur):
             fullt_nafn = f"{kenninafn}, {eiginnafn} {millinafn}".strip()
             
             # Búa til nýja línu með tab (\t) í stað kommu nema fyrir kenninafn
-            ny_lina = f"{heimilisfang}\t{simanumer}\t{fullt_nafn}"
+            ny_lina = f"{heimilisfang}\t\t{simanumer}\t{fullt_nafn}"
             nytt_linuformat.append(ny_lina)
 
     return nytt_linuformat

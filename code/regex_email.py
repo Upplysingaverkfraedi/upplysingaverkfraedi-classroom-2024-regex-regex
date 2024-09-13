@@ -33,7 +33,8 @@ def finna_netfong(text):
     """
     # Regluleg segð fyrir netföng, fyrst kemur texti af óþekktri lengd sem er stoppaður af "@", svo meiri texti stoppaður af punkti
     # og loks domain textinn sem getur innihaldið aukapunkt og aukatexta
-    email_pattern = r'[a-zA-Z0-9þæð_.+-]+@[a-zA-Z0-9þæð-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?'
+    email_pattern = r'[a-zA-Z0-9þæð_.+-]+@[a-zA-Z0-9þæð-]{1,63}\.[a-zA-Z]{2,6}(?:\.[a-zA-Z]{2,6})?$'
+
 
     # Listi til að geyma öll fundin netföng
     netfong_listi = []
