@@ -4,6 +4,7 @@ import argparse
 import re
 
 
+
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Vinna með úrslit af tímataka.net.')
     parser.add_argument('--url', help='Slóð að vefsíðu með úrslitum.')

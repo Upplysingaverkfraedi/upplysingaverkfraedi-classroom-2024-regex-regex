@@ -4,7 +4,7 @@
 Reglulega segðin sem við notum til að skoða URL: `pattern = re.compile(
     r'<tr[^>]*>\s*<td[^>]*>(\d+)</td>\s*<td[^>]*>(3845)</td>\s*<td[^>]*>Finnur Björnsson</td>\s*<td[^>]*>(\d{4})</td>\s*<td[^>]*>(.*?)</td>\s*<td[^>]*>(\d{2}:\d{2}:\d{2})</td>\s*<td[^>]*>(\+\d{2}:\d{2})</td>\s*<td[^>]*>(\d{2}:\d{2}:\d{2})</td>',
     re.DOTALL
-)`
+)`.
 * `https://timataka\.net\`:
     * Passar nákvæmlega við linkinn "https://timataka.net/".
     * Ath. að við notum bakstrik (`\`) á undan punkti (`.`) til að sleppa honum og tryggja að hann passi við bókstaflega punkt (`.`) í URL-inu.
