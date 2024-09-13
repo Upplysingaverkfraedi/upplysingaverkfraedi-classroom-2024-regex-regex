@@ -1,17 +1,16 @@
 import os
 import argparse
-
+import re
 
 def parse_arguments():
     """
     Lesa inn argument frá skipanalínu
     :return: (ArgumentParser) parser með argumentunum
     """
-
     parser = argparse.ArgumentParser(description="""Endurraða csv-skrá sem hefur röðunina: 
     1) eiginnafn millinafn kenninafn, 2) heimilisfang, 3) símanúmer.    
     Úttaksskráin verður endurröðuð í tsv röð:
-    1) heimilisfang, 2) símanúmer, 3) kenninafn, eigninnafn millinafn.
+    1) heimilisfang, 2) símanúmer, 3) kenninafn, eiginnafn millinafn.
     """)
     parser.add_argument('--infile', required=True,
                         help='Slóð að inntaksskrá með upplýsingum.')
@@ -26,17 +25,47 @@ def lesa_skra(file_path):
     :param file_path: (str) Slóð að skrá
     :return:          (list) Listi af línum
     """
-
     with open(file_path, 'r') as file:
         return file.readlines()
 
 
 def endurraða_skra(linur):
-    """"
-    Hér á eftir að uppfæra doc-streng sem lýsir fallinu betur.
     """
+    Endurraðar línum úr csv skrá í tsv skrá í réttri röð:
+    Heimilisfang, Símanúmer, Kenninafn, Eiginnafn Millinafn.
+    :param linur: (list) Listi af línum úr inntaksskrá
+    :return:      (list) Listi af endurröðuðum línum
+    """
+    nytt_linuformat = []
 
-    raise NotImplementedError("Regluleg segð til að endurraða línur hefur ekki verið útfærð.")
+    for lina in linur:
+        # Nota reglulega segð til að finna nafn, heimilisfang og símanúmer
+        pattern = r"^(.*?),\s*(.*?),\s*(\d{3}-\d{4})$"
+        match = re.match(pattern, lina.strip())
+        
+        if match:
+            nafn, heimilisfang, simanumer = match.groups()
+            
+            # Skipta nafni í eiginnafn, millinafn og kenninafn
+            nafn_partar = nafn.split()
+            if len(nafn_partar) == 2:  # Bara eiginnafn og kenninafn
+                eiginnafn = nafn_partar[0]
+                kenninafn = nafn_partar[1]
+                millinafn = ""
+            elif len(nafn_partar) == 3:  # Eiginnafn, millinafn og kenninafn
+                eiginnafn = nafn_partar[0]
+                millinafn = nafn_partar[1]
+                kenninafn = nafn_partar[2]
+            else:
+                raise ValueError("Óvæntur fjöldi nafna")
+
+            fullt_nafn = f"{kenninafn}, {eiginnafn} {millinafn}".strip()
+            
+            # Búa til nýja línu með tab (\t) í stað kommu nema fyrir kenninafn
+            ny_lina = f"{heimilisfang}\t{simanumer}\t{fullt_nafn}"
+            nytt_linuformat.append(ny_lina)
+
+    return nytt_linuformat
 
 
 def skrifa_nidurstodur(output_file, linur):

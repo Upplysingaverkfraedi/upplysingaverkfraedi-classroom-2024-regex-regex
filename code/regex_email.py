@@ -21,7 +21,6 @@ def lesa_skra(file_path):
     :param file_path: (str) Slóð að skrá
     :return:          (list) Listi af línum
     """
-
     with open(file_path, 'r') as file:
         return file.readlines()
 
@@ -32,8 +31,19 @@ def finna_netfong(text):
     :param text: (list) Listi af línum
     :return:     (list) Listi af netföngum
     """
+    # Regluleg segð fyrir netföng, fyrst kemur texti af óþekktri lengd sem er stoppaður af "@", svo meiri texti stoppaður af punkti
+    # og loks domain textinn sem getur innihaldið aukapunkt og aukatexta
+    email_pattern = r'[a-zA-Z0-9þæð_.+-]+@[a-zA-Z0-9þæð-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?'
 
-    raise NotImplementedError("Regluleg segð til að finna netföng hefur ekki verið útfærð.")
+    # Listi til að geyma öll fundin netföng
+    netfong_listi = []
+    
+    for line in text:
+        # Finna öll netföng í hverri línu og bæta þeim við lista
+        found_emails = re.findall(email_pattern, line)
+        netfong_listi.extend(found_emails)
+    
+    return netfong_listi
 
 
 def prenta_nidurstodur(netfong_listi):
@@ -42,7 +52,6 @@ def prenta_nidurstodur(netfong_listi):
     :param netfong_listi: (list) Listi af netföngum
     :return:              None
     """
-
     if netfong_listi:
         print("Fundin netföng:")
         for email in netfong_listi:
@@ -66,7 +75,7 @@ def main():
     # Lesa texta úr skránni
     text = lesa_skra(args.file)
 
-    # Leita af netföngum með óútfærðri reglulegri segð
+    # Leita af netföngum með reglulegri segð
     netfong_listi = finna_netfong(text)
     prenta_nidurstodur(netfong_listi)
 
