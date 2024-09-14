@@ -30,7 +30,7 @@ Skrifið stutta skýrslu sem útskýrir lausnina ykkar og hvaða fræðilegar a�
 að leysa verkefnin. Skilið PDF skjali í skilahóflið á Canvas, en hér skal vista `.md` eða `.tex` 
 útgáfuna.
 
-### 1. Leita af kennitölu
+### 1. Leita að kennitölu
 
 Kennitala einstaklings er byggð á fæðingardegi og inniheldur 10 stafi, þar sem:
 
