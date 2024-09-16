@@ -3,7 +3,6 @@ import pandas as pd
 import requests
 import argparse
 
-# Les URL og aðrar færibreytur frá skipanalínunni
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Vinna með úrslit af tímataka.net.')
     parser.add_argument('--url', required=True, help='Slóð að vefsíðu með úrslitum.')
@@ -21,6 +20,7 @@ def fetch_html(url):
         return None
 
 # Greinir út hvort taflan sé einstaklings-, liðakeppni eða hraðatafla út frá höfuðgögnum
+
 def detect_format(html):
     if re.search(r'\bTeam\b', html, re.IGNORECASE):
         return 'team'
@@ -135,5 +135,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-    
