@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/CMNHJo7M)
 # Reglulegar segðir (Regular Expressions)
 
 ## Leiðbeiningar
@@ -29,7 +30,7 @@ Skrifið stutta skýrslu sem útskýrir lausnina ykkar og hvaða fræðilegar a�
 að leysa verkefnin. Skilið PDF skjali í skilahóflið á Canvas, en hér skal vista `.md` eða `.tex` 
 útgáfuna.
 
-### 1. Leita af kennitölu
+### 1. Leita að kennitölu
 
 Kennitala einstaklings er byggð á fæðingardegi og inniheldur 10 stafi, þar sem:
 
