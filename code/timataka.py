@@ -1,3 +1,4 @@
+import re
 import requests
 import pandas as pd
 import argparse
@@ -23,9 +24,28 @@ def fetch_html(url):
 
 
 def parse_html(html):
-    # Hér þarf að útfæra reglulega segð til að vinna úr niðurstöðum, ekki er leyfilegt að nota
-    # pakka eins og BeautifulSoup til að leysa verkefnið.
-    raise NotImplementedError("Eftir að útfæra reglulega segð sem vinnur úr HTML gögnum.")
+    # Notum reglulega segð til að sækja niðurstöður.
+    # Það er mögulegt að dálkar eins og Club og Behind séu tómar.
+    pattern = r'<tr>\s*<td class="hidden-xs">\s*(\d+)\s*</td>\s*<td>\s*(\d+)\s*</td>\s*<td>\s*([^<]+?)\s*</td>\s*<td class="hidden-xs">\s*(\d+)\s*</td>\s*<td class="hidden-xs">\s*([^<]*)\s*</td>\s*<td>\s*([\d:]+)\s*</td>\s*<td>\s*([^<]*)\s*</td>'
+
+    # Leitum að samsvörun í HTML-inu
+    matches = re.findall(pattern, html)
+
+    # Breytum niðurstöðum í lista af orðum
+    data = []
+    for match in matches:
+        rank, bib, name, year, club, time, behind = match
+        data.append({
+            "Rank": rank,
+            " BIB": bib,
+            " Name": name,
+            " Year": year,
+            " Club": club.strip(),
+            " Time": time.strip(),
+            " Behind": behind.strip() if behind else "N/A"
+        })
+
+    return data
 
 
 def skrifa_nidurstodur(data, output_file):
@@ -51,19 +71,15 @@ def main():
         print(f"Inntaksskráin {args.output} þarf að vera csv skrá.")
         return
 
-    if not 'timataka.net' in args.url:
-        # TODO uppfærið if-skilyrðið til að nota reglulega segð sem passar að URL sé frá
-        #  timataka.net og sýnir úrslit, t.d.
-        #  https://timataka.net/jokulsarhlaup2024/urslit/?race=2&cat=m
-        #  https://www.timataka.net/snaefellsjokulshlaupid2014/urslit/?race=1&cat=m&age=0039
-        #  en ekki
-        #  https://www.timataka.net/snaefellsjokulshlaupid2014/urslit/?race=1
-        print("Slóðin er ekki frá timataka.net")
-        return
-
     html = fetch_html(args.url)
     if not html:
         raise Exception("Ekki tókst að sækja HTML gögn, athugið URL.")
+
+    # Regluleg segð til að tryggja rétt form á slóðinni
+        url_pattern = re.compile(r'^https:\/\/(www\.)?timataka\.net\/.+\/urslit\/\?race=\d+&cat=[a-zA-Z]+')
+        if not url_pattern.match(args.url):
+            print("Slóðin er ekki í réttu formi fyrir timataka.net úrslit.")
+            return
 
     if args.debug:
         html_file = args.output.replace('.csv', '.html')
